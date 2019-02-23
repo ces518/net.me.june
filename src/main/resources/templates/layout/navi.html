@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav th:fragment="navi" class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="#" th:href="@{/}">net.me.june</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars"></i>
+            </button>
+            <a sec:authorise="isAuthenicated()">
+                <span sec:authorize="isAuthenticated()">
+                    | Logged user: <span sec:authentication="name"></span> |
+                    Roles: <span sec:authentication="principal.authorities"></span> |
+                    <a th:href="@{/logout}">Sign Out</a>
+                </span>
+            </a>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" th:href="@{/}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" th:href="@{/login}">Login</a>
+                    </li>
+                    <!--<li class="nav-item">-->
+                        <!--<a class="nav-link" href="post.html">Sample Post</a>-->
+                    <!--</li>-->
+                    <!--<li class="nav-item">-->
+                        <!--<a class="nav-link" href="contact.html">Contact</a>-->
+                    <!--</li>-->
+                </ul>
+            </div>
+        </div>
+    </nav>
+</body>
+</html>
