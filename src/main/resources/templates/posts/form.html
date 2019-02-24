@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/main">
+<body>
+  <!-- Post Content -->
+  <article>
+    <div class="container" layout:fragment="content">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <form name="posts" method="post" th:action="@{/posts}" th:object="${posts}">
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" th:field="*{postName}">
+          </div>
+          <div class="form-group">
+            <label for="content">Content</label>
+            <textarea class="form-control" id="content" th:field="*{postContent}"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </article>
+</body>
+</html>

@@ -3,6 +3,7 @@ package net.me.june.dev.serivice;
 import net.me.june.dev.domain.User;
 import net.me.june.dev.domain.UserDTO;
 import net.me.june.dev.repository.UserRepository;
+import net.me.june.dev.security.LoginVO;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -36,7 +37,8 @@ public class UserService implements UserDetailsService {
                 return "ROLE_ADMIN";
             }
         });
-        return new org.springframework.security.core.userdetails.User(finedUser.getUserName(),finedUser.getUserPassword(),authorities);
+
+        return new LoginVO(finedUser.getUserId(),finedUser.getUserName(),finedUser.getUserPassword(),authorities);
     }
 
     public User createUser(UserDTO userDTO) {
@@ -44,5 +46,9 @@ public class UserService implements UserDetailsService {
         User user = userDTO.toEntity();
         User savedUser = userRepository.save(user);
         return savedUser;
+    }
+
+    public User findUserById(String userId) {
+        return userRepository.findByUserId(userId);
     }
 }

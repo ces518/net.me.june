@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/main">
+<body>
+  <!-- Post Content -->
+  <article>
+    <div class="container" layout:fragment="content">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <div th:each="row,rowSts: ${posts}">
+                <a th:text="${rowSts.count}"></a>
+                <h2 class="section-heading" th:text="${row.postName}"></h2>
+                <blockquote class="blockquote" th:text="${row.postContent}"></blockquote>
+                <p th:text="${row.user.userName}"></p><p th:text="${row.createdAt}"></p>
+            </div>
+            <div th:if="${#lists.isEmpty(posts)}">
+                <h2>No Posts</h2>
+            </div>
+        </div>
+      </div>
+        <a href="#" th:href="@{/posts/form}">등록</a>
+    </div>
+  </article>
+</body>
+</html>

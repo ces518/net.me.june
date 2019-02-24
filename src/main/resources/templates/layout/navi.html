@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -13,24 +14,23 @@
                 Menu
                 <i class="fas fa-bars"></i>
             </button>
-            <a sec:authorise="isAuthenicated()">
-                <span sec:authorize="isAuthenticated()">
-                    | Logged user: <span sec:authentication="name"></span> |
-                    Roles: <span sec:authentication="principal.authorities"></span> |
-                    <a th:href="@{/logout}">Sign Out</a>
-                </span>
-            </a>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">
+                            <span sec:authentication="name"></span>
+                            님 환영합니다.
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" th:href="@{/}">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" th:href="@{/login}">Login</a>
                     </li>
-                    <!--<li class="nav-item">-->
-                        <!--<a class="nav-link" href="post.html">Sample Post</a>-->
-                    <!--</li>-->
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" th:href="@{/posts}">Post</a>
+                    </li>
                     <!--<li class="nav-item">-->
                         <!--<a class="nav-link" href="contact.html">Contact</a>-->
                     <!--</li>-->
